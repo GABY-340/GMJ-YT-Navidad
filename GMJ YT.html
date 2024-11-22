@@ -1,0 +1,763 @@
+<html><head><base href="/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMJ YT - Regalos Navideños</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+    :root {
+        --holiday-red: #d42426;
+        --holiday-green: #0f8a5f;
+        --snow-white: #ffffff;
+        --gold: #ffd700;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+    
+    .navbar {
+        background-color: var(--holiday-red);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-brand {
+        color: var(--snow-white) !important;
+        font-weight: bold;
+        font-size: 24px;
+        margin: 0 auto;
+    }
+    
+    .hero-section {
+        height: 60vh;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 2rem;
+    }
+    
+    .carousel-item img {
+        width: 100%;
+        height: 60vh;
+        object-fit: cover;
+    }
+    
+    .product-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        background-color: white;
+    }
+    
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+    
+    .product-card h5 {
+        color: var(--holiday-red);
+    }
+    
+    .product-card .price {
+        color: var(--holiday-green);
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-comprar {
+        background-color: var(--holiday-red);
+        color: var(--snow-white);
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+    
+    .btn-comprar:hover {
+        background-color: #b01d1f;
+        color: var(--snow-white);
+    }
+    
+    footer {
+        background-color: var(--holiday-red);
+        color: var(--snow-white);
+        padding: 2rem 0;
+        margin-top: 2rem;
+    }
+    
+    footer h5 {
+        color: var(--snow-white);
+        margin-bottom: 1rem;
+    }
+    
+    footer .small {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        opacity: 0.9;
+    }
+    
+    .footer-logo {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        overflow: hidden;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .footer-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+    
+    .whatsapp-button:hover {
+        transform: scale(1.1);
+        color: white;
+    }
+    
+    .whatsapp-button i {
+        font-size: 35px;
+    }
+    
+    /* Adding carousel controls style */
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%;
+        opacity: 0.8;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0,0,0,0.3);
+        padding: 20px;
+        border-radius: 50%;
+    }
+    
+    .chat-bot-button {
+        position: fixed;
+        bottom: 90px; /* Positioned above WhatsApp button */
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #6c5ce7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        z-index: 1000;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .chat-bot-button:hover {
+        transform: scale(1.1);
+    }
+    
+    .chat-bot-button i {
+        font-size: 30px;
+    }
+    
+    .chat-container {
+        display: none;
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        z-index: 999;
+        overflow: hidden;
+        flex-direction: column;
+    }
+    
+    .chat-header {
+        background: #6c5ce7;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .chat-header h5 {
+        margin: 0;
+    }
+    
+    .chat-close {
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+    }
+    
+    .chat-messages {
+        flex-grow: 1;
+        padding: 15px;
+        overflow-y: auto;
+    }
+    
+    .chat-input-container {
+        padding: 15px;
+        border-top: 1px solid #eee;
+        display: flex;
+    }
+    
+    .chat-input {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-right: 8px;
+    }
+    
+    .chat-send {
+        background: #6c5ce7;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .message {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        border-radius: 15px;
+        max-width: 80%;
+    }
+    
+    .bot-message {
+        background: #f0f0f0;
+        margin-right: auto;
+    }
+    
+    .user-message {
+        background: #6c5ce7;
+        color: white;
+        margin-left: auto;
+    }
+    
+    .search-container {
+        margin-top: -1rem;
+        position: relative;
+        z-index: 100;
+    }
+    
+    .btn-holiday {
+        background-color: var(--holiday-red);
+        color: var(--snow-white);
+    }
+    
+    .btn-holiday:hover {
+        background-color: #b01d1f;
+        color: var(--snow-white);
+    }
+    
+    .product-card.hidden {
+        display: none;
+    }
+    
+    .star-rating {
+        font-size: 24px;
+        color: #ffd700;
+        cursor: pointer;
+    }
+    
+    .star-rating i {
+        margin-right: 5px;
+    }
+    
+    .star-rating i:hover,
+    .star-rating i.fas {
+        color: #ffd700;
+    }
+    
+    .navbar .btn-light {
+        margin-left: auto;
+    }
+    
+    .review-item {
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+        margin-bottom: 15px;
+    }
+    
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .review-actions {
+        display: none; /* Hidden by default */
+    }
+    
+    .admin .review-actions {
+        display: block; /* Only visible when admin mode is active */
+    }
+    
+    .review-image {
+        max-width: 200px;
+        margin: 10px 0;
+    }
+    
+    .star-display {
+        color: #ffd700;
+        margin: 5px 0;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">GMJ YT</a>
+            <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                <i class="fas fa-star"></i> Reseñas
+            </button>
+        </div>
+    </nav>
+
+<!-- Chat Bot Button -->
+<div class="chat-bot-button" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- Chat Container -->
+<div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+        <h5>Lucy - Asistente Virtual</h5>
+        <span class="chat-close" onclick="toggleChat()">×</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">
+            ¡Hola! Soy Lucy, tu asistente virtual. Estoy aquí para ayudarte con información sobre productos, precios, envíos y más. Mi horario de atención es de 9:00 AM a 6:00 PM. ¿En qué puedo ayudarte?
+        </div>
+    </div>
+    <div class="chat-input-container">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu mensaje...">
+        <button class="chat-send" onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.link/3q6t5r" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Hero Section with Carousel -->
+<section class="hero-section">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="http://4.bp.blogspot.com/-sGYBFhRLqyM/VJcbeJHLxmI/AAAAAAACces/r8_qfUl9AXQ/s1600/Im%C3%A1genes%2BNavide%C3%B1as%2B2014%2B2015%2BTarjetas%2By%2BPostales%2B(1).jpg" alt="Decoración navideña con luces doradas" width="1920" height="1080">
+            </div>
+            <div class="carousel-item">
+                <img src="https://4.bp.blogspot.com/-7jSlx-fkBSA/UqFC_im_S1I/AAAAAAACAzA/JhXBiBWvZBQ/s1600/im%C3%A1genes-navide%C3%B1as-christmas-free-pictures-postales-para-navidad-adornos-esferas-nieve-+(19).jpg" alt="Árbol de navidad decorado" width="1920" height="1080">
+            </div>
+            <div class="carousel-item">
+                <img src="https://1.bp.blogspot.com/-GPnR060pnsM/VJimFLqDUGI/AAAAAAACco0/xMlpUPABfS4/s1600/Navidad%2Bimagenes%2By%2Bpostales%2By%2Btarjetas%2Bnavide%C3%B1as%2B(14).jpg" alt="Regalos navideños con decoración festiva" width="1920" height="1080">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1543258103-a62bdc069871" alt="Decoración navideña tradicional" width="1920" height="1080">
+            </div>
+        </div>
+        
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!-- Search Bar -->
+<div class="container search-container mb-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar productos...">
+                <button class="btn btn-holiday" type="button" onclick="searchProducts()">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Products Section -->
+<section class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_navidad_con_santa_claus_en_gafas-r39e23513bdb54521ab0a0cc16e90e0c6_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin pequeño Santa Claus</h5>
+                <p>Colgante pequeño para mochilas camisetas etc.</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_santa_claus_con_gafas-256252173876086255" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_santa_claus-re58d17607fcc48168894ead1e0031b11_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin Santa Claus Guitarra</h5>
+                <p>Bonito y apto para mochilas etc.</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_santa_claus-256314733641792347" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_mi_personaje_navidad-r954cc36ad6314ae6a4c33546536ef694_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>GMJ YT Naivdad</h5>
+                <p>Especial y unico en la tienda</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_mi_personaje_navidad-256554193673139752" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_jovenes_navidad-rbb822254757b4eb39b86af036d21f012_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin Jovenes Navidad</h5>
+                <p>Bonito y decorativo</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_jovenes_navidad-256583980646083012" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_spiderman_navideno-r200d5bc2269d4c7c94ebda78b00bba34_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin Navideño Spiderman</h5>
+                <p>Llevate este pin unco y bonito de spiderman</p>
+                <p class="price">$10.85</p>
+                <button><a href="https://www.zazzle.com/pin_spiderman_navideno-256347195765315304" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_personaje_navidad-r3fd67ed56e464dceab24e6274c1a3d8b_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin navideño mi personaje</h5>
+                <p>Pin unico para todo tipo de decoracion</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_personaje_navidad-256159551978586202" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_nino_goku_navideno-r7bf418c9352c4b3ba5942c2041050d88_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin niño Goku Navideño</h5>
+                <p>Pin unico de Navidad</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_nino_goku_navideno-256184209267079259" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_goku_navidad-r3995163679104a5cb83c79378298dcfd_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin Goku Navidad</h5>
+                <p>Pin unico de Goku de Navidad</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_goku_navidad-256449915470182297" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_ninos_navidad-r9d87e5ec46d6471bb349ca0897a3e856_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin Navidad de 2 niños</h5>
+                <p>Estilo unico</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_ninos_navidad-256011953916625161" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_navidad_spiderman-r35b81847e85049e190f8f052b75d6736_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin Spiderman Navidad</h5>
+                <p>Pin unico de Spiderman Navidad</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_navidad_spiderman-256199831470025674" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_nino_goku_navidad-r45a6d430ce414cc89a9bf9d37402eca0_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin niño Goku Navidad</h5>
+                <p>Pin unico de niño Goku de Navidad</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_nino_goku_navidad-256280415280225438" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_ninos_navidad-r8068e8adf0024c6e94b06250df0dcbdb_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin niños Navidad</h5>
+                <p>Pin unico de niños Navidad</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_ninos_navidad-256516486486303897" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_chico_santa_claus_navidad-r0d4e4674be4641be838ce420ef587e58_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin Chico Santa Claus Navidad</h5>
+                <p>Pin unico de Navidad</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_chico_santa_claus_navidad-256451841565967322" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product-card">
+                <img alt="" src="https://rlv.zcache.com/pin_nino_goku_navidad-r930d6b4b62034eaf8baa3a30fb0e50b6_ix7sjm_80.webp?rlvnet=1" width="300" height="200">
+                <h5>Pin niño Goku Navidad</h5>
+                <p>Pin unico y amigable de Navidad</p>
+                <p class="price">$10.70</p>
+                <button><a href="https://www.zazzle.com/pin_nino_goku_navidad-256035849667425741" class="btn btn-comprar">Comprar</a></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Reseñas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-3" id="reviewTabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#writeReview">Escribir Reseña</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#viewReviews">Ver Reseñas</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="writeReview">
+                            <form id="reviewForm">
+                                <div class="mb-3">
+                                    <label for="reviewerName" class="form-label">Tu Nombre</label>
+                                    <input type="text" class="form-control" id="reviewerName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productImage" class="form-label">Foto del Producto</label>
+                                    <input type="file" class="form-control" id="productImage" accept="image/*">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Calificación</label>
+                                    <div class="star-rating">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                    <input type="hidden" id="rating" value="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="review" class="form-label">Tu Opinión</label>
+                                    <textarea class="form-control" id="review" rows="3" required></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="viewReviews">
+                            <div id="reviewsList">
+                                <!-- Reviews will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveReview()">Guardar Reseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <div class="footer-logo">
+                    <img src="https://yt3.googleusercontent.com/sZdhWZ9KLrSwvhYbefjXbrxEbLlH9NGvepmkNf0lWGLMZxSyJf9K2IqrpJ-lEYrVJm4Mxx1hxP4=s160-c-k-c0x00ffffff-no-rj" 
+                         alt="Logo oficial de GMJ YT - Adorno navideño dorado y brillante" 
+                         class="img-fluid rounded-circle"
+                         width="150" 
+                         height="150">
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <h5>Términos y Condiciones</h5>
+                <p class="small">
+                    © 2024 GMJ YT. Todos los derechos reservados.<br>
+                    El contenido, diseño y elementos gráficos están protegidos por leyes de derechos de autor.<br>
+                    Prohibida su reproducción total o parcial sin autorización.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Initialize the carousel with auto-sliding
+document.addEventListener('DOMContentLoaded', function() {
+    var myCarousel = document.querySelector('#heroCarousel');
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 3000, // Changes slides every 3 seconds
+        ride: 'carousel',
+        wrap: true
+    });
+});
+
+// Chat Bot Functionality
+function toggleChat() {
+    const chatContainer = document.getElementById('chatContainer');
+    chatContainer.style.display = chatContainer.style.display === 'none' || chatContainer.style.display === '' ? 'flex' : 'none';
+}
+
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+
+    // Add user message
+    addMessage(message, 'user');
+    input.value = '';
+
+    // Check if within working hours
+    const now = new Date();
+    const hours = now.getHours();
+    if (hours >= 9 && hours < 18) {
+        // Process the message and get bot response
+        const botResponse = getBotResponse(message.toLowerCase());
+        setTimeout(() => addMessage(botResponse, 'bot'), 1000);
+    } else {
+        setTimeout(() => addMessage("Lo siento, estoy fuera de mi horario de trabajo (9:00 AM - 6:00 PM). Por favor, vuelve mañana o contacta al dueño por WhatsApp para atención inmediata.", 'bot'), 1000);
+    }
+}
+
+function addMessage(text, sender) {
+    const messagesContainer = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
+    messageDiv.textContent = text;
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function getBotResponse(message) {
+    if (message.includes('precio') || message.includes('costo')) {
+        return "Los precios de nuestros productos varían. ¿Hay algún producto específico que te interese?";
+    } else if (message.includes('envio') || message.includes('envío')) {
+        return "Realizamos envíos a todo el país. El costo y tiempo de entrega depende de tu ubicación.";
+    } else if (message.includes('horario')) {
+        return "Mi horario de atención es de 9:00 AM a 6:00 PM, de lunes a viernes.";
+    } else if (message.includes('amor') || message.includes('novio') || message.includes('novia')) {
+        return "Lo siento, no puedo ayudarte con temas personales o sentimentales. Para otras consultas sobre la tienda estoy a tu disposición.";
+    } else if (message.includes('creaste') || message.includes('quien te hizo')) {
+        return "Soy Lucy, la asistente virtual de la tienda. Estoy aquí para ayudarte con información sobre productos y servicios.";
+    } else {
+        return "Estoy aquí para ayudarte con información sobre productos, precios y envíos. Si tienes alguna consulta específica, no dudes en preguntarme. Para temas más personales, te sugiero contactar directamente al dueño por WhatsApp.";
+    }
+}
+
+// Search Functionality
+function searchProducts() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        const title = card.querySelector('h5').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+// Enter key functionality for chat input
+document.getElementById('chatInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Add event listener for Enter key in search input
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        searchProducts();
+    }
+});
+</script>
+
+</body>
+</html>
